@@ -1,0 +1,18 @@
+<p>
+  <strong>Title:</strong>
+  <%= @playground.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @playground.text %>
+</p>
+
+<h2>Comments</h2>
+<%= render @playground.comments %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
+
+<%= link_to 'Edit', edit_playground_path(@playground) %> |
+<%= link_to 'Back', playgrounds_path %>
