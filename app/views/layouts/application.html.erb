@@ -9,10 +9,21 @@
 <body>
 
   <div class="navbar">
-    <div class="navbar-inner">
-      <a class="brand" href="#">ChildLaLa</a>
-    </div>
+  <div class="navbar-inner">
+    <a class="brand" href="#">ChildLaLa</a>
+    <ul class="nav pull-right">
+      <li><%= link_to 'Home', root_path, :class => 'navbar-link' %></li>
+      <% if user_signed_in? %>
+      <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+      <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+      <% else %>
+      <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
+      <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+    </ul>
+<% end %>
   </div>
+</div>
+  
 <%= yield %>
 
 </body>

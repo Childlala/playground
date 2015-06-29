@@ -1,6 +1,6 @@
 class PlaygroundsController < ApplicationController
 
-    http_basic_authenticate_with name: "wing", password: "peter", except: [:index, :show]
+    before_action :authenticate_user!, :except => [:index]
 
     def index
     @playgrounds = Playground.all
@@ -21,7 +21,9 @@ class PlaygroundsController < ApplicationController
 
 
     def create
+    
       @playground = Playground.new(playground_params)
+      @playground.user = current_user
     if @playground.save
     redirect_to @playground
     else
@@ -31,7 +33,7 @@ class PlaygroundsController < ApplicationController
 
     def update
      @playground = Playground.find(params[:id])
- 
+     @playground.user = current_user
     if @playground.update(playground_params)
        redirect_to @playground
       else
