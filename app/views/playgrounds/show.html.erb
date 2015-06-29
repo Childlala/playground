@@ -2,7 +2,8 @@
   <strong>Title:</strong>
   <%= @playground.title %>
 </p>
- 
+     <%= image_tag @playground.picture.url if @playground.picture? %>
+     
 <p>
   <strong>Text:</strong>
   <%= @playground.text %>

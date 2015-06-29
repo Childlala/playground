@@ -4,6 +4,7 @@ class PlaygroundsController < ApplicationController
 
     def index
     @playgrounds = Playground.all
+    
     end
 
     def show
@@ -47,7 +48,7 @@ class PlaygroundsController < ApplicationController
 
     private
     def playground_params
-    params.require(:playground).permit(:title, :text)
+    params.require(:playground).permit(:title, :text, :picture)
     end
 
 end

@@ -1,3 +1,15 @@
 // Place all the styles related to the playgrounds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.playlist {
+    
+    height: 120px;
+}
+
+/* resize images */
+.playlist img {
+    height: 120px;
+    width: auto;
+}
