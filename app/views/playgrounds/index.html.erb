@@ -1,27 +1,22 @@
-<h1>Listing articles</h1>
- <hr>
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th colspan="5"></th>
-  </tr>
-</thead>
-<tbody class="playlist">
-  <% @playgrounds.each do |playground| %>
-    <tr>
-      <td><%= link_to playground.title, playground_path(playground) %></td>
-      <td><%= image_tag playground.picture.url if playground.picture? %></td>
-      
-      <td><%= link_to 'Edit', edit_playground_path(playground) %></td>
-      <td><%= link_to 'Destroy', playground_path(playground),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-   </tbody>
-</table>
+
+<div class="center">
+  <div class="row">
+    <% @playgrounds.each do |playground| %>
+    <div class="col-md-3 col-xs-12">
+      <div class="thumbnail" > 
+        <%=link_to( image_tag(playground.picture.url), playground_path(playground), :class=>"work") %>
+            <div class="caption">
+              <h3></h3>
+              <p><%= link_to playground.title, playground_path(playground) %></p>
+            </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+
 
     <%= link_to 'New Playground', new_playground_path %>

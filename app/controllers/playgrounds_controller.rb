@@ -1,6 +1,7 @@
 class PlaygroundsController < ApplicationController
 
-    before_action :authenticate_user!, :except => [:index]
+    before_action :authenticate_user!, :except => [:index, :show]
+    before_action :current_user, :except => [:index]
 
     def index
     @playgrounds = Playground.all
@@ -8,21 +9,22 @@ class PlaygroundsController < ApplicationController
     end
 
     def show
+    @playgrounds = Playground.all
     @playground = Playground.find(params[:id])
     end
 
     def new
-     @playground = Playground.new
+     @playground = current_user.playgrounds.new
     end
 
     def edit
-      @playground = Playground.find(params[:id])
+      @playground = current_user.playgrounds.find(params[:id])
     end
 
 
     def create
     
-      @playground = Playground.new(playground_params)
+      @playground = current_user.playgrounds.new(playground_params)
       @playground.user = current_user
     if @playground.save
     redirect_to @playground
@@ -32,7 +34,7 @@ class PlaygroundsController < ApplicationController
     end
 
     def update
-     @playground = Playground.find(params[:id])
+     @playground = current_user.playgrounds.find(params[:id])
      @playground.user = current_user
     if @playground.update(playground_params)
        redirect_to @playground
@@ -42,7 +44,7 @@ class PlaygroundsController < ApplicationController
     end
 
     def destroy
-    @playground = Playground.find(params[:id])
+    @playground = current_user.playgrounds.find(params[:id])
     @playground.destroy
  
     redirect_to playgrounds_path

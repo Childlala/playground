@@ -1,14 +1,25 @@
-<p>
-  <strong>Title:</strong>
-  <%= @playground.title %>
-</p>
+
+
+
+  <div class="jumbotron col-lg-4 col-lg-offset-2">
+  <h1>Title:
+  <%= @playground.title %></h1>
+
      <%= image_tag @playground.picture.url if @playground.picture? %>
      
-<p>
+</div>
   <strong>Text:</strong>
   <%= @playground.text %>
-</p>
 
+<%= @playground.user_id %>
+
+<% if current_user == @playground.user %>
+      <td><%= link_to 'Edit', edit_playground_path(@playground) %></td>
+      <td><%= link_to 'Destroy', playground_path(@playground),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      
 <h2>Comments</h2>
 <%= render @playground.comments %>
 
