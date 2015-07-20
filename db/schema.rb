@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629105241) do
+ActiveRecord::Schema.define(version: 20150717051816) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "email",              default: "", null: false
+    t.string   "encrypted_password", default: "", null: false
+    t.integer  "sign_in_count",      default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "failed_attempts",    default: 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.string   "commenter"
@@ -22,6 +37,14 @@ ActiveRecord::Schema.define(version: 20150629105241) do
   end
 
   add_index "comments", ["playground_id"], name: "index_comments_on_playground_id"
+
+  create_table "kits", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "kitpic"
+  end
 
   create_table "playgrounds", force: :cascade do |t|
     t.string   "title"
